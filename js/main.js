@@ -43,23 +43,7 @@ jQuery(document).ready(function($) {
 
 	var eventList = [];
 
-	var lastCompliment;
-	var compliment;
-
     moment.lang(lang);
-
-	//connect do Xbee monitor
-	// var socket = io.connect('http://rpi-alarm.local:8082');
-	// socket.on('dishwasher', function (dishwasherReady) {
-	// 	if (dishwasherReady) {
-	// 		$('.dishwasher').fadeIn(2000);
-	// 		$('.lower-third').fadeOut(2000);
-	// 	} else {
-	// 		$('.dishwasher').fadeOut(2000);
-	// 		$('.lower-third').fadeIn(2000);
-	// 	}
-	// });
-
 
 	(function checkVersion()
 	{
@@ -198,33 +182,6 @@ jQuery(document).ready(function($) {
 		setTimeout(function() {
         	updateCalendar();
         }, 1000);
-	})();
-
-	(function updateCompliment()
-	{
-        //see compliments.js
-		while (compliment == lastCompliment) {
-     
-      //Check for current time  
-      var compliments;
-      var date = new Date();
-      var hour = date.getHours();
-      //set compliments to use
-      if (hour >= 3 && hour < 12) compliments = morning;
-      if (hour >= 12 && hour < 17) compliments = afternoon;
-      if (hour >= 17 || hour < 3) compliments = evening;
-
-		compliment = Math.floor(Math.random()*compliments.length);
-		}
-
-		$('.compliment').updateWithText(compliments[compliment], 4000);
-
-		lastCompliment = compliment;
-
-		setTimeout(function() {
-			updateCompliment(true);
-		}, 30000);
-
 	})();
 
 	(function updateCurrentWeather()
